@@ -19,14 +19,18 @@ export function TopBar() {
       const top = 61;
       const bottom = window.innerHeight * 0.34;
       let best: string | null = null;
+      let bestArea = 0;
       for (const n of NAV) {
         const el = document.getElementById(n.id);
         if (!el) continue;
         const r = el.getBoundingClientRect();
-        if (r.top < bottom && r.bottom > top) best = best ?? n.id;
-        if (r.top <= top && r.bottom > top) best = n.id;
+        const area = Math.min(r.bottom, bottom) - Math.max(r.top, top);
+        if (area > bestArea) {
+          bestArea = area;
+          best = n.id;
+        }
       }
-      setActive(best);
+      setActive(bestArea > 0 ? best : null);
     };
     const obs = new IntersectionObserver(
       () => {
