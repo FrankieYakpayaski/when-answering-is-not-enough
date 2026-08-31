@@ -62,6 +62,7 @@ export function TopBar() {
               <a
                 href={`#${n.id}`}
                 aria-current={active === n.id ? "true" : undefined}
+                onClick={() => setActive(n.id)}
               >
                 {n.label}
               </a>
