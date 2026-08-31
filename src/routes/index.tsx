@@ -12,6 +12,7 @@ import {
 import { useDark } from "@/hooks/use-dark";
 import { ThemeVars } from "@/components/evidence/ThemeVars";
 import { SafetyNotice } from "@/components/evidence/SafetyNotice";
+import { TopBar } from "@/components/evidence/TopBar";
 import { CorpusGrid } from "@/components/evidence/CorpusGrid";
 import { RecordDrawer } from "@/components/evidence/RecordDrawer";
 import {
