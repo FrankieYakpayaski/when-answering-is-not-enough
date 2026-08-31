@@ -11,6 +11,7 @@ import {
 } from "@/lib/dataset";
 import { useDark } from "@/hooks/use-dark";
 import { ThemeVars } from "@/components/evidence/ThemeVars";
+import { SafetyNotice } from "@/components/evidence/SafetyNotice";
 import { CorpusGrid } from "@/components/evidence/CorpusGrid";
 import { RecordDrawer } from "@/components/evidence/RecordDrawer";
 import {
@@ -129,6 +130,7 @@ function Index() {
 
       <main className="br-page">
         <section id="opening" className="br-section">
+          <SafetyNotice d={d} />
           <Opening d={d} />
         </section>
 
