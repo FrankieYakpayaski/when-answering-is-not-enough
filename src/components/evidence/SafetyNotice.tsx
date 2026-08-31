@@ -40,7 +40,10 @@ export function SafetyNotice({ d }: { d: Dataset }) {
         </button>
       </div>
       <div className="br-notice-blocks">
-        <div className="br-notice-block br-notice-block-help">
+        <div
+          className="br-notice-block"
+          style={{ borderLeftColor: dark ? unsafe.colorDark : unsafe.color }}
+        >
           <h3>If you need help now</h3>
           <p>
             Contact a qualified health worker or your local emergency services.
