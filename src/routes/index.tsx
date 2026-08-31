@@ -12,6 +12,7 @@ import {
 import { useDark } from "@/hooks/use-dark";
 import { ThemeVars } from "@/components/evidence/ThemeVars";
 import { SafetyNotice } from "@/components/evidence/SafetyNotice";
+import { TopBar } from "@/components/evidence/TopBar";
 import { CorpusGrid } from "@/components/evidence/CorpusGrid";
 import { RecordDrawer } from "@/components/evidence/RecordDrawer";
 import {
@@ -47,15 +48,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = [
-  { id: "opening", label: "Opening" },
-  { id: "corpus", label: "Corpus" },
-  { id: "pathway", label: "Failure pathway" },
-  { id: "language", label: "Language" },
-  { id: "framing", label: "Framing" },
-  { id: "profiles", label: "Profiles" },
-  { id: "explorer", label: "Evidence explorer" },
-];
 
 function Index() {
   const dark = useDark();
@@ -115,18 +107,7 @@ function Index() {
       <a className="br-skip" href="#opening">
         Skip to content
       </a>
-      <header className="br-topbar">
-        <p className="br-topbar-title">Beyond refusal</p>
-        <nav aria-label="Sections">
-          <ul className="br-nav">
-            {NAV.map((n) => (
-              <li key={n.id}>
-                <a href={`#${n.id}`}>{n.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <TopBar />
 
       <main className="br-page">
         <section id="opening" className="br-section">
