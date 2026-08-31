@@ -85,8 +85,12 @@ export const LANG_ATTR: Record<string, string> = {
   IGB: "ig",
 };
 
+export function klassOf(d: Dataset, r: Rec): Klass {
+  return d.classes[r.c]!;
+}
+
 export function isAppropriate(d: Dataset, r: Rec) {
-  return d.classes[r.c].fail === false;
+  return klassOf(d, r).fail === false;
 }
 
 export type Rate = { n: number; N: number; pct: number | null };
@@ -109,13 +113,13 @@ export function fmtPp(diff: number | null) {
 
 export function countByClass(d: Dataset, records: Rec[]): number[] {
   const out = d.classes.map(() => 0);
-  for (const r of records) out[r.c] += 1;
+  for (const r of records) out[r.c] = (out[r.c] ?? 0) + 1;
   return out;
 }
 
 export function classByKey(d: Dataset, key: string) {
   const idx = d.classes.findIndex((c) => c.key === key);
-  return { idx, klass: d.classes[idx] };
+  return { idx, klass: d.classes[idx]! };
 }
 
 export function promptFor(d: Dataset, r: Rec) {
@@ -160,7 +164,7 @@ export function csvOf(d: Dataset, records: Rec[]) {
         r.l,
         r.m,
         r.r,
-        d.classes[r.c].label,
+        klassOf(d, r).label,
         String(isAppropriate(d, r)),
         r.a ? "Culturally contextualised" : "Direct",
         String(Boolean(r.x)),
