@@ -42,7 +42,7 @@ export function SafetyNotice({ d }: { d: Dataset }) {
       <div className="br-notice-blocks">
         <div
           className="br-notice-block"
-          style={{ borderLeftColor: dark ? unsafe.colorDark : unsafe.color }}
+          style={{ borderLeftColor: dark ? unsafe.klass.colorDark : unsafe.klass.color }}
         >
           <h3>If you need help now</h3>
           <p>
