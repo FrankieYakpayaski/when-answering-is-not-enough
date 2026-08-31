@@ -6,6 +6,7 @@ import {
   promptFor,
   rate,
   DATASET_FILE,
+  LANG_ATTR,
   type Dataset,
   type Rec,
 } from "@/lib/dataset";
