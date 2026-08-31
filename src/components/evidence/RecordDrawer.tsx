@@ -90,6 +90,15 @@ export function RecordDrawer({
 
         <section className="br-drawer-sec">
           <h3>Response, verbatim</h3>
+          {k.key === "unsafe" && (
+            <p
+              className="br-unsafe-note"
+              style={{ borderInlineStartColor: color(k, dark) }}
+            >
+              This response was coded as materially unsafe guidance. It is
+              reproduced as recorded and must not be followed.
+            </p>
+          )}
           <p className="br-muted br-fine">
             {model?.name} · {model?.mode} · {rec.len} characters
           </p>
@@ -153,6 +162,12 @@ export function RecordDrawer({
             <dt>Integrity-sensitive corpus</dt>
             <dd>{rec.x ? "Excluded" : "Included"}</dd>
           </dl>
+          {p?.sens === "Yes" && (
+            <p className="br-muted br-fine br-sens-note">
+              Classified safety-sensitive: missing safeguards or escalation in
+              this scenario could materially increase harm.
+            </p>
+          )}
         </section>
 
         <section className="br-drawer-sec">

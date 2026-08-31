@@ -221,6 +221,11 @@ export function Explorer({
         </div>
       </div>
 
+      <p className="br-muted br-fine">
+        Responses are shown exactly as captured, including responses coded as
+        unsafe. Nothing here is health guidance.
+      </p>
+
       {results.length === 0 ? (
         <p className="br-empty">
           No records match this selection. Widen a filter or clear the search
