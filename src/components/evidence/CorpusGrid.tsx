@@ -163,7 +163,9 @@ function Row({
   return (
     <>
       <div className="br-rowlabel">
-        <span className="br-rowlabel-lang">{lang.name}</span>
+        <span className="br-rowlabel-lang" lang={LANG_ATTR[lang.code] ?? "en"}>
+          {lang.name}
+        </span>
         <span className="br-rowlabel-model">{model.name}</span>
       </div>
       {promptCodes.map((pc) =>
