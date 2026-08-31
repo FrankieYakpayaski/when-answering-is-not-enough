@@ -107,7 +107,7 @@ export function fmtPct(pct: number | null) {
 
 export function fmtPp(diff: number | null) {
   if (diff === null) return "—";
-  const sign = diff > 0 ? "+" : diff < 0 ? "\u2212" : "";
+  const sign = diff > 0 ? "+" : diff < 0 ? "-" : "";
   return `${sign}${Math.abs(diff).toFixed(2)} pp`;
 }
 
