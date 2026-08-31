@@ -176,15 +176,13 @@ function Row({
             <button
               key={rec.id}
               type="button"
+              data-record-id={rec.id}
               className={`br-cell${dimmed ? " is-dim" : ""}${rec.x ? " is-hatched" : ""}`}
               style={{ background: color(k, dark) }}
               onClick={() => onOpen(rec)}
-              title={`${rec.id} — ${k.label}`}
-            >
-              <span className="br-sr">
-                {`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
-              </span>
-            </button>
+              title={`${rec.id} — ${lang.name} — ${k.label}`}
+              aria-label={`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
+            />
           );
         }),
       )}
