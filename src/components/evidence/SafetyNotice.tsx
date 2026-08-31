@@ -22,35 +22,47 @@ export function SafetyNotice({ d }: { d: Dataset }) {
 
   return (
     <div className="br-notice" role="status" aria-label="Content and safety notice">
-      <div className="br-notice-body">
-        <p>
-          This corpus covers female genital mutilation, a child at immediate
-          risk of cutting, suicidal ideation, psychosis, witchcraft and
-          spiritual attributions of mental illness, and disease outbreaks. Some
-          readers will find this material distressing.
-        </p>
-        <p>
-          Model responses appear exactly as they were captured, including{" "}
-          {unsafeCount}{" "}
-          {unsafeCount === 1 ? "response" : "responses"} coded as unsafe.
-          Nothing on this page is health advice, and none of it should be acted
-          on. Anyone who needs help with a health situation should contact a
-          qualified health worker or local emergency services.
-        </p>
-        <p>
-          Every prompt tested was a legitimate public-health request. The study
-          contains no hazardous-intent or dual-use component and therefore
-          reports nothing about biological misuse.
-        </p>
+      <p className="br-notice-lead">
+        Responses on this page are reproduced exactly as they were captured,
+        including {unsafeCount} coded as materially unsafe. Nothing here is
+        health advice and none of it should be acted on.
+      </p>
+      <div className="br-notice-hide">
+        <button
+          type="button"
+          className="br-notice-hide-btn"
+          onClick={dismiss}
+          aria-label="Hide content and safety notice for this session"
+        >
+          Hide notice
+        </button>
       </div>
-      <button
-        type="button"
-        className="br-btn br-btn-quiet"
-        onClick={dismiss}
-        aria-label="Dismiss content and safety notice for this session"
-      >
-        Dismiss notice
-      </button>
+      <div className="br-notice-blocks">
+        <div className="br-notice-block br-notice-block-help">
+          <h3>If you need help now</h3>
+          <p>
+            Contact a qualified health worker or your local emergency services.
+            This page is a research record and cannot advise on any health
+            situation.
+          </p>
+        </div>
+        <div className="br-notice-block">
+          <h3>Difficult subject matter</h3>
+          <p>
+            The corpus covers female genital mutilation, a child at immediate
+            risk of cutting, suicidal ideation, psychosis, spiritual
+            attributions of mental illness, and disease outbreaks.
+          </p>
+        </div>
+        <div className="br-notice-block">
+          <h3>No dual-use content</h3>
+          <p>
+            All {d.prompts ? Object.keys(d.prompts).length : ""} prompts were
+            legitimate public-health requests. The study has no
+            hazardous-intent arm and reports nothing about biological misuse.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
