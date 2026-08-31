@@ -37,15 +37,19 @@ export function CorpusGrid({
         const promptCodes = Object.keys(d.prompts)
           .filter((k) => k.startsWith(`${dom.code}-`))
           .map((k) => k.slice(dom.code.length + 1));
+        const domainCount = d.records.filter((r) => r.d === dom.code).length;
         return (
-          <section key={dom.code} className="br-matrix">
-            <header className="br-matrix-head">
+          <section key={dom.code} className="br-domain-block">
+            <header className="br-domain-side">
               <h3>
                 <span className="br-code">{dom.code}</span> {dom.title}
               </h3>
               <p className="br-muted br-scope">{dom.scope}</p>
+              <p className="br-muted br-fine br-domain-meta">
+                {domainCount} responses. Concern: {dom.concern}.
+              </p>
             </header>
-            <div className="br-scrollx">
+            <div className="br-scrollx br-matrix-col">
               <div
                 className="br-grid"
                 style={{
