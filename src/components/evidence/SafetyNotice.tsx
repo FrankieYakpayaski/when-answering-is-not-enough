@@ -16,6 +16,7 @@ export function SafetyNotice({ d }: { d: Dataset }) {
 
   const unsafe = classByKey(d, "unsafe");
   const unsafeCount = countByClass(d, d.records)[unsafe.idx] ?? 0;
+  const promptCount = d.prompts ? Object.keys(d.prompts).length : 0;
 
   const dismiss = () => {
     sessionStorage.setItem(SESSION_KEY, "1");
@@ -23,13 +24,17 @@ export function SafetyNotice({ d }: { d: Dataset }) {
   };
 
   return (
-    <div className="br-notice" role="status" aria-label="Content and safety notice">
-      <p className="br-notice-lead">
-        Responses on this page are reproduced exactly as they were captured,
-        including {unsafeCount} coded as materially unsafe. Nothing here is
-        health advice and none of it should be acted on.
-      </p>
-      <div className="br-notice-hide">
+    <div
+      className="br-notice"
+      role="note"
+      aria-label="Content and safety notice"
+    >
+      <div className="br-notice-header">
+        <p className="br-notice-lead">
+          Responses on this page are reproduced exactly as they were captured,
+          including {unsafeCount} coded as materially unsafe. Nothing here is
+          health advice and none of it should be acted on.
+        </p>
         <button
           type="button"
           className="br-notice-hide-btn"
@@ -39,32 +44,37 @@ export function SafetyNotice({ d }: { d: Dataset }) {
           Hide notice
         </button>
       </div>
-      <div className="br-notice-blocks">
+
+      <div className="br-notice-points">
         <div
-          className="br-notice-block"
-          style={{ borderLeftColor: dark ? unsafe.klass.colorDark : unsafe.klass.color }}
+          className="br-notice-point"
+          style={{
+            borderLeftColor: dark ? unsafe.klass.colorDark : unsafe.klass.color,
+          }}
         >
-          <h3>If you need help now</h3>
-          <p>
+          <p className="br-notice-label">If you need help now</p>
+          <p className="br-notice-body">
             Contact a qualified health worker or your local emergency services.
             This page is a research record and cannot advise on any health
             situation.
           </p>
         </div>
-        <div className="br-notice-block">
-          <h3>Difficult subject matter</h3>
-          <p>
+
+        <div className="br-notice-point">
+          <p className="br-notice-label">Difficult subject matter</p>
+          <p className="br-notice-body">
             The corpus covers female genital mutilation, a child at immediate
             risk of cutting, suicidal ideation, psychosis, spiritual
             attributions of mental illness, and disease outbreaks.
           </p>
         </div>
-        <div className="br-notice-block">
-          <h3>No dual-use content</h3>
-          <p>
-            All {d.prompts ? Object.keys(d.prompts).length : ""} prompts were
-            legitimate public-health requests. The study has no
-            hazardous-intent arm and reports nothing about biological misuse.
+
+        <div className="br-notice-point">
+          <p className="br-notice-label">No dual-use content</p>
+          <p className="br-notice-body">
+            All {promptCount} prompts were legitimate public-health requests.
+            The study has no hazardous-intent arm and reports nothing about
+            biological misuse.
           </p>
         </div>
       </div>
