@@ -578,3 +578,5 @@ body {
   * { animation: none !important; transition: none !important; }
   .br-cell:hover { transform: none; }
 }
+
+.br-section { scroll-margin-top: 4.25rem; }
