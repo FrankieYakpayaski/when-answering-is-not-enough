@@ -15,20 +15,22 @@ export function TopBar() {
 
   useEffect(() => {
     if (typeof IntersectionObserver === "undefined") return;
-    const seen = new Map<string, number>();
+    const pick = () => {
+      const top = 61;
+      const bottom = window.innerHeight * 0.34;
+      let best: string | null = null;
+      for (const n of NAV) {
+        const el = document.getElementById(n.id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top < bottom && r.bottom > top) best = best ?? n.id;
+        if (r.top <= top && r.bottom > top) best = n.id;
+      }
+      setActive(best);
+    };
     const obs = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          seen.set(e.target.id, e.isIntersecting ? e.intersectionRatio : 0);
-        }
-        let best: string | null = null;
-        for (const n of NAV) {
-          if ((seen.get(n.id) ?? 0) > 0) {
-            best = n.id;
-            break;
-          }
-        }
-        setActive(best);
+      () => {
+        pick();
       },
       { rootMargin: "-60px 0px -66% 0px", threshold: 0 },
     );
