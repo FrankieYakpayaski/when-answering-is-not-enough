@@ -580,3 +580,33 @@ body {
 }
 
 .br-section { scroll-margin-top: 4.25rem; }
+
+/* Content and safety notice */
+.br-notice {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.br-notice-body p { margin: 0 0 0.5rem; max-width: 62ch; }
+.br-notice-body p:last-child { margin-bottom: 0; }
+.br-notice .br-btn { flex-shrink: 0; }
+
+/* Unsafe record marker in the drawer */
+.br-unsafe-note {
+  border-inline-start: 3px solid var(--ink);
+  background: var(--panel);
+  padding: 0.55rem 0.75rem;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* Safety-sensitive condition note */
+.br-sens-note { margin-top: 0.6rem; }
