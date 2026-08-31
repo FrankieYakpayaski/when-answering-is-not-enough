@@ -115,18 +115,7 @@ function Index() {
       <a className="br-skip" href="#opening">
         Skip to content
       </a>
-      <header className="br-topbar">
-        <p className="br-topbar-title">Beyond refusal</p>
-        <nav aria-label="Sections">
-          <ul className="br-nav">
-            {NAV.map((n) => (
-              <li key={n.id}>
-                <a href={`#${n.id}`}>{n.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <TopBar />
 
       <main className="br-page">
         <section id="opening" className="br-section">
