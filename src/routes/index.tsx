@@ -48,15 +48,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = [
-  { id: "opening", label: "Opening" },
-  { id: "corpus", label: "Corpus" },
-  { id: "pathway", label: "Failure pathway" },
-  { id: "language", label: "Language" },
-  { id: "framing", label: "Framing" },
-  { id: "profiles", label: "Profiles" },
-  { id: "explorer", label: "Evidence explorer" },
-];
 
 function Index() {
   const dark = useDark();
