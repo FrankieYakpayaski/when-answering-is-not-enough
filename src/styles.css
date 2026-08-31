@@ -583,20 +583,50 @@ body {
 
 /* Content and safety notice */
 .br-notice {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.25rem;
-  border: 1px solid var(--rule);
-  background: var(--panel);
-  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.5rem 0;
   margin-bottom: 2rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
 }
-.br-notice-body p { margin: 0 0 0.5rem; max-width: 62ch; }
-.br-notice-body p:last-child { margin-bottom: 0; }
-.br-notice .br-btn { flex-shrink: 0; }
+.br-notice-lead {
+  margin: 0;
+  font-family: var(--font-display, inherit);
+  font-size: 1.15rem;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+.br-notice-hide { text-align: right; margin: 0.75rem 0 1.25rem; }
+.br-notice-hide-btn {
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 0 0 2px;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+.br-notice-hide-btn:hover { color: var(--ink); border-bottom-color: var(--ink); }
+.br-notice-hide-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.br-notice-block {
+  border-left: 3px solid var(--rule);
+  padding: 0.1rem 0 0.1rem 1rem;
+  margin: 0 0 1.1rem;
+  max-width: 68ch;
+}
+.br-notice-block:last-child { margin-bottom: 0; }
+.br-notice-block-help { border-left-color: var(--fail-unsafe, #c0392b); }
+.br-notice-block h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.br-notice-block p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
 
 /* Unsafe record marker in the drawer */
 .br-unsafe-note {
