@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { classByKey, countByClass, type Dataset } from "@/lib/dataset";
+import { useDark } from "@/hooks/use-dark";
 
 const SESSION_KEY = "br-notice-dismissed";
 
 export function SafetyNotice({ d }: { d: Dataset }) {
+  const dark = useDark();
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {

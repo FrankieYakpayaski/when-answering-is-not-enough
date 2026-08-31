@@ -590,8 +590,7 @@ body {
 }
 .br-notice-lead {
   margin: 0;
-  font-family: var(--font-display, inherit);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   line-height: 1.45;
   max-width: 62ch;
 }
@@ -601,7 +600,7 @@ body {
   border: none;
   border-bottom: 1px solid var(--rule);
   padding: 0 0 2px;
-  color: var(--muted);
+  color: var(--ink-muted);
   font: inherit;
   font-size: 0.92rem;
   cursor: pointer;
@@ -615,7 +614,6 @@ body {
   max-width: 68ch;
 }
 .br-notice-block:last-child { margin-bottom: 0; }
-.br-notice-block-help { border-left-color: var(--fail-unsafe, #c0392b); }
 .br-notice-block h3 {
   margin: 0 0 0.3rem;
   font-size: 0.95rem;
@@ -625,7 +623,7 @@ body {
   margin: 0;
   font-size: 0.92rem;
   line-height: 1.55;
-  color: var(--muted);
+  color: var(--ink-muted);
 }
 
 /* Unsafe record marker in the drawer */
