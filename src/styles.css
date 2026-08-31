@@ -212,7 +212,7 @@ body {
 .br-nav a:hover { color: var(--ink); text-decoration: underline; }
 
 .br-page {
-  max-width: 78rem;
+  max-width: 85rem;
   margin: 0 auto;
   padding: 0 1rem 4rem;
 }
@@ -271,14 +271,32 @@ body {
 }
 .br-figure-label { font-size: 0.8rem; color: var(--ink-muted); }
 
-.br-matrix { border-top: 1px solid var(--rule); padding-top: 1rem; }
-.br-matrix-head h3 {
+.br-domain-block {
+  padding: 1.5rem 0 2rem;
+  border-bottom: 1px solid var(--rule);
+}
+.br-domain-block:last-of-type { border-bottom: 0; }
+.br-domain-side h3 {
   font-family: var(--font-display);
   font-size: 1.02rem;
   font-weight: 600;
 }
+.br-domain-meta { margin-top: 0.75rem; }
 .br-scope { max-width: 78ch; margin: 0.25rem 0 0.75rem; font-size: 0.78rem; }
 .br-scrollx { overflow-x: auto; }
+.br-matrix-col { max-width: 41.25rem; }
+@media (min-width: 65rem) {
+  .br-domain-block {
+    display: grid;
+    grid-template-columns: minmax(15rem, 18.75rem) 1fr;
+    gap: 1.875rem;
+    align-items: start;
+  }
+  .br-domain-side {
+    position: sticky;
+    top: 3.5rem;
+  }
+}
 .br-grid {
   display: grid;
   gap: 2px;
@@ -522,7 +540,7 @@ body {
 .br-footer {
   border-top: 1px solid var(--rule);
   padding: 2rem 1rem 4rem;
-  max-width: 78rem;
+  max-width: 85rem;
   margin: 0 auto;
   color: var(--ink-muted);
   font-size: 0.78rem;
