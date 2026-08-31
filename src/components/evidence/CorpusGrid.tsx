@@ -3,6 +3,7 @@ import {
   color,
   countByClass,
   klassOf,
+  LANG_ATTR,
   type Dataset,
   type Rec,
 } from "@/lib/dataset";
@@ -163,7 +164,9 @@ function Row({
   return (
     <>
       <div className="br-rowlabel">
-        <span className="br-rowlabel-lang">{lang.name}</span>
+        <span className="br-rowlabel-lang" lang={LANG_ATTR[lang.code] ?? "en"}>
+          {lang.name}
+        </span>
         <span className="br-rowlabel-model">{model.name}</span>
       </div>
       {promptCodes.map((pc) =>
@@ -176,15 +179,13 @@ function Row({
             <button
               key={rec.id}
               type="button"
+              data-record-id={rec.id}
               className={`br-cell${dimmed ? " is-dim" : ""}${rec.x ? " is-hatched" : ""}`}
               style={{ background: color(k, dark) }}
               onClick={() => onOpen(rec)}
-              title={`${rec.id} — ${k.label}`}
-            >
-              <span className="br-sr">
-                {`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
-              </span>
-            </button>
+              title={`${rec.id} — ${lang.name} — ${k.label}`}
+              aria-label={`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
+            />
           );
         }),
       )}

@@ -6,6 +6,7 @@ import {
   promptFor,
   rate,
   DATASET_FILE,
+  LANG_ATTR,
   type Dataset,
   type Rec,
 } from "@/lib/dataset";
@@ -256,7 +257,9 @@ export function Explorer({
                     </th>
                     <td>{r.d}</td>
                     <td>{r.p}</td>
-                    <td>{d.langs.find((l) => l.code === r.l)?.name}</td>
+                    <td lang={LANG_ATTR[r.l] ?? "en"}>
+                      {d.langs.find((l) => l.code === r.l)?.name}
+                    </td>
                     <td>{d.models.find((m) => m.code === r.m)?.name}</td>
                     <td>{r.a ? "Culturally contextualised" : "Direct"}</td>
                     <td>{klassOf(d, r).label}</td>
