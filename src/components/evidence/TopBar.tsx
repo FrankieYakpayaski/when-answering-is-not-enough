@@ -42,7 +42,14 @@ export function TopBar() {
       (el): el is HTMLElement => !!el,
     );
     els.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+    window.addEventListener("scroll", pick, { passive: true });
+    window.addEventListener("resize", pick);
+    pick();
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("scroll", pick);
+      window.removeEventListener("resize", pick);
+    };
   }, []);
 
   return (
