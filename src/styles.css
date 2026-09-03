@@ -293,6 +293,10 @@ body {
 @media (min-width: 768px) {
   .br-hero-title { max-width: 22ch; }
 }
+/* At desktop width the title must sit on one line */
+@media (min-width: 1024px) {
+  .br-hero-title { max-width: 30ch; }
+}
 .br-hero-deck {
   font-family: Inter, "Source Sans 3", "Noto Sans", system-ui, sans-serif;
   font-size: clamp(1rem, 2.5vw, 1.25rem);
