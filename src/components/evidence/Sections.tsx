@@ -39,13 +39,23 @@ export function Opening({ d }: { d: Dataset }) {
 
   return (
     <div className="br-stack">
+      <div className="br-hero">
+        <p className="br-hero-eyebrow">
+          Multilingual public-health safety evaluation
+        </p>
+        <h1 className="br-hero-title">When Answering Is Not Enough</h1>
+        <p className="br-hero-deck">
+          Across English, Nigerian Pidgin, Yorùbá and Igbo
+        </p>
+        <p className="br-hero-meta">
+          {all.length} coded responses. Comprehension, language delivery,
+          escalation, unsafe guidance.
+        </p>
+      </div>
       <p className="br-eyebrow">
         {d.meta["domainCount"]} domains · {d.meta["langCount"]} languages ·{" "}
         {d.meta["modelCount"]} configurations · {String(d.meta["testWindow"])}
       </p>
-      <h1 className="br-display">
-        What answering looks like when nothing is refused
-      </h1>
       <div className="br-figures">
         <Figure label="Coded responses" value={String(all.length)} />
         <Figure
