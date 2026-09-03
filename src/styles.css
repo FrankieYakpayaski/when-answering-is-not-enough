@@ -266,6 +266,49 @@ body {
   font-weight: 600;
   max-width: 22ch;
 }
+
+/* Hero heading block */
+.br-hero {
+  padding-bottom: clamp(2rem, 6vw, 4rem);
+}
+.br-hero-eyebrow {
+  font-family: Inter, "Source Sans 3", "Noto Sans", system-ui, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-wrap: balance;
+  margin-bottom: 0.75rem;
+}
+.br-hero-title {
+  font-family: Inter, "Source Sans 3", "Noto Sans", system-ui, sans-serif;
+  font-size: clamp(1.75rem, 6vw, 3.25rem);
+  line-height: 1.1;
+  font-weight: 600;
+  text-wrap: balance;
+  max-width: 14ch;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+@media (min-width: 768px) {
+  .br-hero-title { max-width: 22ch; }
+}
+.br-hero-deck {
+  font-family: Inter, "Source Sans 3", "Noto Sans", system-ui, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--ink-muted);
+  text-wrap: pretty;
+  max-width: 42ch;
+}
+.br-hero-meta {
+  font-family: Inter, "Source Sans 3", "Noto Sans", system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-muted);
+  margin-top: 0.75rem;
+}
 .br-h2 {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.6vw, 1.7rem);
