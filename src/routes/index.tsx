@@ -30,9 +30,10 @@ import {
   type Filters,
 } from "@/components/evidence/Explorer";
 
-const TITLE = "Beyond refusal — multilingual public-health safety evidence";
+const TITLE =
+  "When Answering Is Not Enough: Multilingual Public-Health Safety Across English, Nigerian Pidgin, Yorùbá and Igbo";
 const DESC =
-  "An interrogable record of coded model responses across English, Nigerian Pidgin, Yorùbá and Igbo, with every figure computed from the published dataset.";
+  "A 1,080-response evaluation of comprehension, language delivery, escalation and unsafe guidance across English, Nigerian Pidgin, Yorùbá and Igbo.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
