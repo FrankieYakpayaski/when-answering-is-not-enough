@@ -118,7 +118,7 @@ function Index() {
           <Opening d={d} />
         </section>
 
-        <section id="corpus" className="br-section">
+        <section id="corpus" className="br-section br-corpus">
           <h2 className="br-h2">The corpus</h2>
           <p className="br-lede">
             Every coded response, one cell each. Rows are language by
