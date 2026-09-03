@@ -54,7 +54,7 @@ export function TopBar() {
 
   return (
     <header className="br-topbar">
-      <p className="br-topbar-title">Beyond refusal</p>
+      <p className="br-topbar-title">When Answering Is Not Enough</p>
       <nav aria-label="Sections" className="br-navwrap">
         <ul className="br-nav">
           {NAV.map((n) => (
