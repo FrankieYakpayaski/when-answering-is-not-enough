@@ -353,72 +353,135 @@ body {
 }
 .br-figure-label { font-size: 0.8rem; color: var(--ink-muted); }
 
-.br-domain-block {
-  padding: 1.5rem 0 2rem;
-  border-bottom: 1px solid var(--rule);
+/* Corpus section */
+.br-corpus {
+  --cell: 22px;
+  --grp-gap: 6px;
+  --lang-col: max-content;
 }
-.br-domain-block:last-of-type { border-bottom: 0; }
+.br-corpus > * {
+  max-width: 75rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 3rem);
+  padding-right: clamp(1rem, 4vw, 3rem);
+}
+
+.br-domain-block {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.5rem;
+}
+.br-domain-block:last-of-type { border-bottom: 0; margin-bottom: 0; }
+.br-domain-code {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
 .br-domain-side h3 {
   font-family: var(--font-display);
   font-size: 1.02rem;
   font-weight: 600;
+  max-width: 30ch;
 }
-.br-domain-meta { margin-top: 0.75rem; }
-.br-scope { max-width: 78ch; margin: 0.25rem 0 0.75rem; font-size: 0.78rem; }
+.br-domain-meta {
+  margin-top: 1.25rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-faint);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  max-width: 60ch;
+}
+.br-scope {
+  max-width: 60ch;
+  margin: 1rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
 .br-scrollx { overflow-x: auto; }
-.br-matrix-col { max-width: 41.25rem; }
-@media (min-width: 65rem) {
+.br-matrix-col { position: relative; min-width: 0; }
+.br-matrix-col::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 2rem;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--ground));
+  opacity: 0;
+}
+@media (max-width: 64rem) {
+  .br-matrix-col::after { opacity: 1; }
+}
+@media (min-width: 64rem) {
   .br-domain-block {
     display: grid;
-    grid-template-columns: minmax(15rem, 18.75rem) 1fr;
-    gap: 1.875rem;
+    grid-template-columns: 34% 1fr;
+    gap: 3rem;
     align-items: start;
-  }
-  .br-domain-side {
-    position: sticky;
-    top: 3.5rem;
   }
 }
 .br-grid {
   display: grid;
-  gap: 2px;
+  gap: 3px;
   align-items: center;
   min-width: max-content;
   padding-bottom: 0.5rem;
 }
 .br-grid-corner { }
+.br-gutter { width: var(--grp-gap); }
+.br-rowgutter { grid-column: 1 / -1; height: 4px; }
+.br-langtint {
+  background: var(--ink);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
 .br-colgroup {
-  font-size: 0.66rem;
+  font-size: 0.68rem;
   letter-spacing: 0.08em;
   color: var(--ink-faint);
   text-align: center;
   border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 0.15rem;
 }
 .br-colrep {
-  font-size: 0.6rem;
+  font-size: 0.62rem;
   color: var(--ink-faint);
   text-align: center;
   font-variant-numeric: tabular-nums;
+  padding-bottom: 0.5rem;
 }
 .br-rowlabel {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding-right: 0.6rem;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   color: var(--ink-muted);
   white-space: nowrap;
+  position: relative;
+  z-index: 1;
 }
-.br-rowlabel-model { color: var(--ink-faint); }
+.br-rowlabel-model {
+  color: var(--ink-faint);
+  text-align: right;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
 .br-cell {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: var(--cell);
+  height: var(--cell);
   border: 0;
   padding: 0;
   cursor: pointer;
-  transition: opacity 120ms ease, transform 120ms ease;
+  position: relative;
+  z-index: 1;
+  transition: opacity 120ms ease, outline-color 120ms ease;
 }
-.br-cell:hover { transform: scale(1.35); }
+.br-cell:hover,
+.br-cell:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
 .br-cell.is-dim { opacity: 0.16; }
 .br-cell.is-hatched {
   background-image: repeating-linear-gradient(
@@ -427,7 +490,16 @@ body {
     transparent 2px 5px
   );
 }
-.br-cell-empty { width: 1.05rem; height: 1.05rem; }
+.br-cell-empty { width: var(--cell); height: var(--cell); }
+@media (max-width: 48rem) {
+  .br-corpus { --cell: 16px; }
+  .br-rowlabel {
+    position: sticky;
+    background: var(--ground);
+  }
+  .br-rowlabel-lang { left: 0; }
+  .br-rowlabel-model { left: 5.5rem; padding-left: 0.5rem; padding-right: 0.75rem; }
+}
 
 .br-legend {
   display: flex;

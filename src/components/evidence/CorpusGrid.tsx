@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { Fragment, useMemo, useState } from "react";
 import {
   color,
   countByClass,
@@ -34,71 +34,11 @@ export function CorpusGrid({
 
   return (
     <div className="br-stack">
-      {d.domains.map((dom) => {
-        const promptCodes = Object.keys(d.prompts)
-          .filter((k) => k.startsWith(`${dom.code}-`))
-          .map((k) => k.slice(dom.code.length + 1));
-        const domainCount = d.records.filter((r) => r.d === dom.code).length;
-        return (
-          <section key={dom.code} className="br-domain-block">
-            <header className="br-domain-side">
-              <h3>
-                <span className="br-code">{dom.code}</span> {dom.title}
-              </h3>
-              <p className="br-muted br-scope">{dom.scope}</p>
-              <p className="br-muted br-fine br-domain-meta">
-                {domainCount} responses. Concern: {dom.concern}.
-              </p>
-            </header>
-            <div className="br-scrollx br-matrix-col">
-              <div
-                className="br-grid"
-                style={{
-                  gridTemplateColumns: `10.5rem repeat(${promptCodes.length * reps.length}, 1.05rem)`,
-                }}
-              >
-                <div className="br-grid-corner" />
-                {promptCodes.map((pc) => (
-                  <div
-                    key={pc}
-                    className="br-colgroup"
-                    style={{ gridColumn: `span ${reps.length}` }}
-                  >
-                    {pc}
-                  </div>
-                ))}
-                <div className="br-grid-corner" />
-                {promptCodes.map((pc) =>
-                  reps.map((rp) => (
-                    <div key={`${pc}-${rp}`} className="br-colrep">
-                      {rp.replace(/^R0?/, "")}
-                    </div>
-                  )),
-                )}
-                {d.langs.map((lang) =>
-                  d.models.map((model) => (
-                    <Row
-                      key={`${dom.code}-${lang.code}-${model.code}`}
-                      d={d}
-                      dark={dark}
-                      dom={dom.code}
-                      lang={lang}
-                      model={model}
-                      promptCodes={promptCodes}
-                      reps={reps}
-                      byKey={byKey}
-                      selected={selected}
-                      onOpen={onOpen}
-                    />
-                  )),
-                )}
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      <div className="br-legend" role="group" aria-label="Outcome legend and filter">
+      <div
+        className="br-legend"
+        role="group"
+        aria-label="Outcome legend and filter"
+      >
         {d.classes.map((k, idx) => {
           const active = selected === idx;
           return (
@@ -134,6 +74,101 @@ export function CorpusGrid({
         estimates. Select an outcome to dim the other cells; every cell stays in
         place.
       </p>
+
+      {d.domains.map((dom) => {
+        const promptCodes = Object.keys(d.prompts)
+          .filter((k) => k.startsWith(`${dom.code}-`))
+          .map((k) => k.slice(dom.code.length + 1));
+        const domainCount = d.records.filter((r) => r.d === dom.code).length;
+        const cols =
+          "var(--lang-col) max-content" +
+          promptCodes
+            .map(
+              (_, i) =>
+                `${i ? " var(--grp-gap)" : ""} repeat(${reps.length}, var(--cell))`,
+            )
+            .join("");
+        const rowsPerBlock = d.models.length + 1;
+        return (
+          <section key={dom.code} className="br-domain-block">
+            <header className="br-domain-side">
+              <p className="br-domain-code">{dom.code}</p>
+              <h3>{dom.title}</h3>
+              <p className="br-muted br-scope">{dom.scope}</p>
+              <p className="br-muted br-fine br-domain-meta">
+                {domainCount} responses. Concern: {dom.concern}.
+              </p>
+            </header>
+            <div className="br-matrix-col">
+              <div className="br-scrollx">
+                <div
+                  className="br-grid"
+                  style={{ gridTemplateColumns: cols }}
+                >
+                  <div className="br-grid-corner" style={{ gridColumn: "span 2" }} />
+                  {promptCodes.map((pc, i) => (
+                    <Fragment key={pc}>
+                      {i > 0 && <div className="br-gutter" aria-hidden="true" />}
+                      <div
+                        className="br-colgroup"
+                        style={{ gridColumn: `span ${reps.length}` }}
+                      >
+                        {pc}
+                      </div>
+                    </Fragment>
+                  ))}
+                  <div className="br-grid-corner" style={{ gridColumn: "span 2" }} />
+                  {promptCodes.map((pc, i) => (
+                    <Fragment key={pc}>
+                      {i > 0 && <div className="br-gutter" aria-hidden="true" />}
+                      {reps.map((rp) => (
+                        <div key={`${pc}-${rp}`} className="br-colrep">
+                          {rp.replace(/^R0?/, "")}
+                        </div>
+                      ))}
+                    </Fragment>
+                  ))}
+                  {d.langs.map((lang, li) => (
+                    <Fragment key={lang.code}>
+                      {li > 0 && (
+                        <div className="br-rowgutter" aria-hidden="true" />
+                      )}
+                      {d.models.map((model) => (
+                        <Row
+                          key={`${dom.code}-${lang.code}-${model.code}`}
+                          d={d}
+                          dark={dark}
+                          dom={dom.code}
+                          lang={lang}
+                          model={model}
+                          promptCodes={promptCodes}
+                          reps={reps}
+                          byKey={byKey}
+                          selected={selected}
+                          onOpen={onOpen}
+                        />
+                      ))}
+                    </Fragment>
+                  ))}
+                  {d.langs.map((lang, li) =>
+                    li % 2 === 1 ? (
+                      <div
+                        key={`tint-${lang.code}`}
+                        className="br-langtint"
+                        aria-hidden="true"
+                        style={{
+                          gridColumn: "1 / -1",
+                          gridRow: `${3 + li * rowsPerBlock} / span ${d.models.length}`,
+                        }}
+                      />
+                    ) : null,
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
@@ -163,32 +198,36 @@ function Row({
 }) {
   return (
     <>
-      <div className="br-rowlabel">
-        <span className="br-rowlabel-lang" lang={LANG_ATTR[lang.code] ?? "en"}>
-          {lang.name}
-        </span>
-        <span className="br-rowlabel-model">{model.name}</span>
+      <div className="br-rowlabel br-rowlabel-lang" lang={LANG_ATTR[lang.code] ?? "en"}>
+        {lang.name}
       </div>
-      {promptCodes.map((pc) =>
-        reps.map((rp) => {
-          const rec = byKey.get(`${dom}|${lang.code}|${model.code}|${pc}|${rp}`);
-          if (!rec) return <div key={`${pc}-${rp}`} className="br-cell-empty" />;
-          const k = klassOf(d, rec);
-          const dimmed = selected !== null && selected !== rec.c;
-          return (
-            <button
-              key={rec.id}
-              type="button"
-              data-record-id={rec.id}
-              className={`br-cell${dimmed ? " is-dim" : ""}${rec.x ? " is-hatched" : ""}`}
-              style={{ background: color(k, dark) }}
-              onClick={() => onOpen(rec)}
-              title={`${rec.id} — ${lang.name} — ${k.label}`}
-              aria-label={`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
-            />
-          );
-        }),
-      )}
+      <div className="br-rowlabel br-rowlabel-model">{model.name}</div>
+      {promptCodes.map((pc, i) => (
+        <Fragment key={pc}>
+          {i > 0 && <div className="br-gutter" aria-hidden="true" />}
+          {reps.map((rp) => {
+            const rec = byKey.get(
+              `${dom}|${lang.code}|${model.code}|${pc}|${rp}`,
+            );
+            if (!rec)
+              return <div key={`${pc}-${rp}`} className="br-cell-empty" />;
+            const k = klassOf(d, rec);
+            const dimmed = selected !== null && selected !== rec.c;
+            return (
+              <button
+                key={rec.id}
+                type="button"
+                data-record-id={rec.id}
+                className={`br-cell${dimmed ? " is-dim" : ""}${rec.x ? " is-hatched" : ""}`}
+                style={{ background: color(k, dark) }}
+                onClick={() => onOpen(rec)}
+                title={`${rec.id} — ${lang.name} — ${k.label}`}
+                aria-label={`${rec.id}, ${lang.name}, ${model.name}, prompt ${pc}, repetition ${rp}: ${k.label}`}
+              />
+            );
+          })}
+        </Fragment>
+      ))}
     </>
   );
 }
