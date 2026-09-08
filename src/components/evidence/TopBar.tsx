@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 export const NAV = [
   { id: "opening", label: "Opening" },
