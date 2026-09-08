@@ -55,7 +55,9 @@ export function TopBar() {
 
   return (
     <header className="br-topbar">
-      <p className="br-topbar-title">When Answering Is Not Enough</p>
+      <Link to="/" className="br-topbar-title">
+        When Answering Is Not Enough
+      </Link>
       <nav aria-label="Sections" className="br-navwrap">
         <ul className="br-nav">
           {NAV.map((n) => (
@@ -69,6 +71,9 @@ export function TopBar() {
               </a>
             </li>
           ))}
+          <li>
+            <Link to="/summary">Summary</Link>
+          </li>
         </ul>
       </nav>
     </header>
