@@ -329,6 +329,21 @@ body {
   text-transform: uppercase;
   color: var(--ink-faint);
 }
+.br-topbar-title {
+  text-decoration: none;
+  color: var(--ink);
+}
+.br-topbar-title:hover { color: var(--ink-muted); }
+.br-prose-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  margin: 0 0 1.25rem;
+  max-width: 70ch;
+  color: var(--ink);
+}
+.br-prose-list li::marker { color: var(--ink-muted); }
 .br-mono { font-variant-numeric: tabular-nums; font-size: 0.75rem; }
 .br-code {
   font-size: 0.72rem;
