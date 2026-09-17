@@ -73,7 +73,7 @@ What the data does and does not support is set out in the `claims` section of th
 | `method` · `claims` · `meta` · `footer` | Method cards and supported / not-claimed boundaries |
 | `theme` | Light and dark design tokens |
  
-Full field definitions are in [`docs/BUILD_SPEC.md`](docs/BUILD_SPEC.md).
+Full field definitions are in [`BUILD_SPEC.md`](BUILD_SPEC.md).
  
 ## Derived metrics
  
@@ -87,12 +87,11 @@ Full field definitions are in [`docs/BUILD_SPEC.md`](docs/BUILD_SPEC.md).
 ```
 public/beyond-refusal-dataset.json   Coded corpus, prompts, rubric, method and claims
 src/                                 Application source
-docs/BUILD_SPEC.md                   Specification and acceptance checks for the front end
-```
+BUILD_SPEC.md                        Specification and acceptance checks for the front end
  
 ## Build notes
  
-The front end was generated with [Lovable](https://lovable.dev) against a written specification ([`docs/BUILD_SPEC.md`](docs/BUILD_SPEC.md)) that fixes the data contract, permitted formulas, accessibility requirements and acceptance checks. The evaluation design, prompt translation, response coding and integrity register are the author's work.
+The front end was generated with [Lovable](https://lovable.dev) against a written specification, [`BUILD_SPEC.md`](BUILD_SPEC.md), that fixes the data contract, permitted formulas, accessibility requirements and acceptance checks. The evaluation design, prompt translation, response coding and integrity register are the author's work.
  
 Continue developing in the [Lovable editor](https://lovable.dev/projects/52e88b81-e9ba-4e3e-a46a-ddd99d163990). Changes made in Lovable commit to this repository, and pushes to `main` sync back into Lovable.
  
